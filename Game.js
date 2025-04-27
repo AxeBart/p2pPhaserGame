@@ -29,7 +29,7 @@ export default class Game extends Phaser.Scene {
         })
 
         this.myPlayer = this.physics.add.sprite(100, 100, 'player').setOrigin(0.5, 0.5).play('run');
-        this.myPlayer.setCollideWorldBounds(true); // Empêche le joueur de sortir des limites du monde
+        // this.myPlayer.setCollideWorldBounds(true); // Empêche le joueur de sortir des limites du monde
         // this.myPlayer.setBounce(0.2); // Ajoute un rebond léger pour le joueur
         setupP2P(this.myPlayer, this)
 
