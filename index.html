@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Un jeu multijoueur en temps réel avec Phaser et PeerJS.">
+    <title>Phaser P2P Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
+    <script src="/rexvirtualjoystickplugin.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+    <style>
+        *{
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="font-size: .7rem; text-align:center; margin-top:10px; color: beige; position: absolute; background: rgb(0, 0, 0, .5); top: 0%; width: max-content;">
+
+        <div style="display: flex; flex-direction: column; align-items: center; max-width: 150px; padding: 5px;">
+            <p id="myId">ID : -- --- -- </p>
+            <input id="joinInput" style="width: 100%; margin: .3rem; padding: 0; border: none;" placeholder="ID de la partie">
+            <button id="joinBtn" style="width: 100%;">Rejoindre</button>
+            <button id="fullscreenBtn" style="width: 100%;">FullScreen</button>
+        </div>
+       
+    </div>
+    <script>
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Erreur : ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        document.getElementById('fullscreenBtn').addEventListener('click', toggleFullscreen);
+
+        // Gérer le verrouillage de l'orientation sur mobile
+        if (screen.orientation && screen.orientation.lock) {
+            screen.orientation.lock('landscape').catch(function (error) {
+                console.log(error);
+            });
+        }
+    </script>
+    <script type="module" src="./main.js"></script>
+</body>
+
+</html>
